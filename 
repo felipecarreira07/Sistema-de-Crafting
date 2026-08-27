@@ -1,0 +1,77 @@
+[1mdiff --git a/.vscode/settings.json b/.vscode/settings.json[m
+[1mindex 7fff889..8da7195 100644[m
+[1m--- a/.vscode/settings.json[m
+[1m+++ b/.vscode/settings.json[m
+[36m@@ -7,5 +7,14 @@[m
+         "comments": false,[m
+         "strings": false[m
+     },[m
+[31m-    "editor.suggestOnTriggerCharacters": true[m
+[32m+[m[32m    "editor.suggestOnTriggerCharacters": true,[m
+[32m+[m[32m    "python.testing.unittestArgs": [[m
+[32m+[m[32m        "-v",[m
+[32m+[m[32m        "-s",[m
+[32m+[m[32m        ".",[m
+[32m+[m[32m        "-p",[m
+[32m+[m[32m        "*test.py"[m
+[32m+[m[32m    ],[m
+[32m+[m[32m    "python.testing.pytestEnabled": false,[m
+[32m+[m[32m    "python.testing.unittestEnabled": true[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/main.py b/main.py[m
+[1mindex a5128d9..cea17b4 100644[m
+[1m--- a/main.py[m
+[1m+++ b/main.py[m
+[36m@@ -57,21 +57,23 @@[m [mdef verificar_disponibilidade_fabric(recipe, qnt):[m
+     for ingrediente in recipe['ingredientes']:[m
+         #Informa se da pra craftar baseado na quantidade presente no inventario[m
+         nome_ingrediente = ingrediente['nome'][m
+[32m+[m[32m        num_calculado = math.ceil(ingrediente['qnt'] * (qnt / recipe['resultado']))[m[41m [m
+         [m
+         if inventario[nome_ingrediente]['qnt'] >= ingrediente['qnt']:[m
+             [m
+[31m-            status = f'Disponivel (Restarao {inventario[nome_ingrediente]['qnt'] - ingrediente['qnt']})'[m
+[32m+[m[32m            status = f'Disponivel (Restarao {inventario[nome_ingrediente]['qnt'] - num_calculado})'[m
+             [m
+         else:[m
+             [m
+[31m-            status = f'Em falta (faltam {math.ceil(ingrediente['qnt'] * (qnt / recipe['resultado'])) - inventario[nome_ingrediente]['qnt']})'[m
+[32m+[m[32m            status = f'Em falta (faltam {num_calculado - inventario[nome_ingrediente]['qnt']})'[m
+             pode_fazer = False[m
+         [m
+[31m-        print(f'{nome_ingrediente}: {status}')[m
+[32m+[m[32m        print(f'{inventario[nome_ingrediente]['nome']}: {status}')[m
+     [m
+     while True:[m
+         if pode_fazer:[m
+             print("Pode fazer!") #Depois vira uma funcao pra realmente craftar[m
+[32m+[m[32m            break[m
+         else:[m
+             print("Nao pode fazer!")[m
+             break[m
+[36m@@ -93,7 +95,7 @@[m [minventario = {[m
+     #Placas ----------------[m
+     "placa_de_ferro": {[m
+         "nome": "Placa de Ferro",[m
+[31m-        "qnt": 0[m
+[32m+[m[32m        "qnt": 1400[m
+     },[m
+     "placa_de_cobre": {[m
+         "nome": "Placa de Cobre",[m
+[36m@@ -102,7 +104,7 @@[m [minventario = {[m
+     #Cabos ------------------[m
+     "fio_de_cobre": {[m
+         "nome": "Fio de Cobre",[m
+[31m-        "qnt": 0[m
+[32m+[m[32m        "qnt": 14452[m
+     },[m
+     "motor_eletrico": {[m
+         "nome": "Motor Eletrico",[m
+[36m@@ -172,5 +174,6 @@[m [mwhile True:[m
+             escolha_calcular_recipe(opcoes_itens)[m
+         case 2:[m
+             print('Saindo...')[m
+[32m+[m[32m            break[m
+         case _:[m
+             print("Opcao invalida!")[m

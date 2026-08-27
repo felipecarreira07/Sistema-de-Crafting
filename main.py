@@ -57,21 +57,23 @@ def verificar_disponibilidade_fabric(recipe, qnt):
     for ingrediente in recipe['ingredientes']:
         #Informa se da pra craftar baseado na quantidade presente no inventario
         nome_ingrediente = ingrediente['nome']
+        num_calculado = math.ceil(ingrediente['qnt'] * (qnt / recipe['resultado'])) 
         
         if inventario[nome_ingrediente]['qnt'] >= ingrediente['qnt']:
             
-            status = f'Disponivel (Restarao {inventario[nome_ingrediente]['qnt'] - ingrediente['qnt']})'
+            status = f'Disponivel (Restarao {inventario[nome_ingrediente]['qnt'] - num_calculado})'
             
         else:
             
-            status = f'Em falta (faltam {math.ceil(ingrediente['qnt'] * (qnt / recipe['resultado'])) - inventario[nome_ingrediente]['qnt']})'
+            status = f'Em falta (faltam {num_calculado - inventario[nome_ingrediente]['qnt']})'
             pode_fazer = False
         
-        print(f'{nome_ingrediente}: {status}')
+        print(f'{inventario[nome_ingrediente]['nome']}: {status}')
     
     while True:
         if pode_fazer:
             print("Pode fazer!") #Depois vira uma funcao pra realmente craftar
+            break
         else:
             print("Nao pode fazer!")
             break
@@ -93,7 +95,7 @@ inventario = {
     #Placas ----------------
     "placa_de_ferro": {
         "nome": "Placa de Ferro",
-        "qnt": 0
+        "qnt": 1400
     },
     "placa_de_cobre": {
         "nome": "Placa de Cobre",
@@ -102,7 +104,7 @@ inventario = {
     #Cabos ------------------
     "fio_de_cobre": {
         "nome": "Fio de Cobre",
-        "qnt": 0
+        "qnt": 14452
     },
     "motor_eletrico": {
         "nome": "Motor Eletrico",
@@ -172,5 +174,6 @@ while True:
             escolha_calcular_recipe(opcoes_itens)
         case 2:
             print('Saindo...')
+            break
         case _:
             print("Opcao invalida!")
