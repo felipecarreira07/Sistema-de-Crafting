@@ -8,6 +8,20 @@ def calcular_recipes(recipe, qnt):
         print(f"{ingrediente['nome']}: {math.ceil(ingrediente['qnt'] * (qnt / recipe['resultado']))}")
         
     print('-----------------------------------------------------------')
+    
+    print("O que deseja fazer agora? ")
+    print("1 - Verificar disponibilidade de fabricacao")
+    print("2 - Sair")
+    escolha = int(input(""))
+    match escolha:
+        case 1:
+            verificar_disponibilidade_fabric(recipe)
+        case 2:
+            print('Saindo...')
+            return
+        case _:
+            print("Opcao invalida!")
+            
     return
         
 def escolha_calcular_recipe(lista_itens):
@@ -36,7 +50,36 @@ def escolha_calcular_recipe(lista_itens):
     calcular_recipes(recipes[lista_itens[escolha - 1]], qnt_craft)
     return        
     
-opcoes_itens = ["placa_de_metal", "placa_de_cobre", "fio_de_cobre", "motor_eletrico"]
+def verificar_disponibilidade_fabric(recipe):
+    
+    pode_fazer = True
+    
+    for ingrediente in recipe['ingredientes']:
+        #Informa se da pra craftar baseado na quantidade presente no inventario
+        
+        nome_ingrediente = ingrediente['nome']
+        
+        if inventario[nome_ingrediente]['qnt'] >= ingrediente['qnt']:
+            
+            status = f'Disponivel (Restarao {inventario[nome_ingrediente]['qnt'] - ingrediente['qnt']})'
+            
+        else:
+            
+            status = f'Em falta (faltam {ingrediente['qnt'] - inventario[nome_ingrediente]['qnt']})'
+            pode_fazer = False
+        
+        print(f'{nome_ingrediente}: {status}')
+    
+    while True:
+        if pode_fazer:
+            print("Pode fazer!") #Depois vira uma funcao pra realmente craftar
+        else:
+            print("Nao pode fazer!")
+            break
+        
+    return
+
+opcoes_itens = ["placa_de_ferro", "placa_de_cobre", "fio_de_cobre", "motor_eletrico"]
 
 inventario = {
     #Minerios Brutos -----------
@@ -49,8 +92,8 @@ inventario = {
         "qnt": 0
     },
     #Placas ----------------
-    "placa_de_metal": {
-        "nome": "Placa de Metal",
+    "placa_de_ferro": {
+        "nome": "Placa de Ferro",
         "qnt": 0
     },
     "placa_de_cobre": {
@@ -70,7 +113,7 @@ inventario = {
 
 recipes = {
     #Placas -----------------
-    "placa_de_metal": {
+    "placa_de_ferro": {
         "nome": "Placa de Metal",
         "ingredientes": [
             {
