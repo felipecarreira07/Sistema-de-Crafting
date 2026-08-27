@@ -16,10 +16,23 @@ def escolha_calcular_recipe(lista_itens):
     for i, item in enumerate(lista_itens):
             print(f'{i + 1} - {recipes[item]['nome']}')
             
-    escolha = int(input(""))
-    qnt_craft = int(input(f"Quantos {recipes[lista_itens[escolha - 1]]['nome']} voce deseja craftar? "))
     #logica --------------------------
-
+    while True:
+        escolha = int(input(""))
+        if(escolha > 0 and escolha <= len(lista_itens)):
+            break
+        else:
+            print("Selecione uma opcao valida!")
+    
+    while True:  
+        qnt_craft = int(input(f"Quantos {recipes[lista_itens[escolha - 1]]['nome']} voce deseja craftar? "))
+        
+        if(qnt_craft > 0):
+            break
+        else:
+            print('Selecione um numero mais que 0!')
+    
+    
     calcular_recipes(recipes[lista_itens[escolha - 1]], qnt_craft)
     return        
     
@@ -69,19 +82,19 @@ recipes = {
             ],
             "resultado": 3
         },
-        
     }
 
 while True:
     #Interface -------------------
     print("Digite a acao desejada: ")
     print("1 - Calcular recipe")
-    escolha = int(input(" "))
+    print("2 - Sair")
+    escolha = int(input(""))
     #Verificacao da escolha ------
     match escolha:
         case 1:
             escolha_calcular_recipe(opcoes_itens)
-            break
-
-teste = 'motor_eletrico'
-calcular_recipes(recipes[teste], 10)
+        case 2:
+            print('Saindo...')
+        case _:
+            print("Opcao invalida!")
