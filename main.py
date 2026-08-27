@@ -15,7 +15,7 @@ def calcular_recipes(recipe, qnt):
     escolha = int(input(""))
     match escolha:
         case 1:
-            verificar_disponibilidade_fabric(recipe)
+            verificar_disponibilidade_fabric(recipe, qnt)
         case 2:
             print('Saindo...')
             return
@@ -50,13 +50,12 @@ def escolha_calcular_recipe(lista_itens):
     calcular_recipes(recipes[lista_itens[escolha - 1]], qnt_craft)
     return        
     
-def verificar_disponibilidade_fabric(recipe):
+def verificar_disponibilidade_fabric(recipe, qnt):
     
     pode_fazer = True
     
     for ingrediente in recipe['ingredientes']:
         #Informa se da pra craftar baseado na quantidade presente no inventario
-        
         nome_ingrediente = ingrediente['nome']
         
         if inventario[nome_ingrediente]['qnt'] >= ingrediente['qnt']:
@@ -65,7 +64,7 @@ def verificar_disponibilidade_fabric(recipe):
             
         else:
             
-            status = f'Em falta (faltam {ingrediente['qnt'] - inventario[nome_ingrediente]['qnt']})'
+            status = f'Em falta (faltam {math.ceil(ingrediente['qnt'] * (qnt / recipe['resultado'])) - inventario[nome_ingrediente]['qnt']})'
             pode_fazer = False
         
         print(f'{nome_ingrediente}: {status}')
