@@ -1,0 +1,47 @@
+recipes = {
+        "placa_de_metal": {
+            "nome": "Placa de Metal",
+            "ingredientes": [
+                {
+                    "nome": "minerio_de_ferro",
+                    "qnt": 2    
+                }
+            ],
+            "resultado": 1
+        },
+        "placa_de_cobre": {
+            "nome": "Placa de Cobre",
+            "ingredientes": [
+                {
+                    "nome": "minerio_de_cobre",
+                    "qnt": 2    
+                }
+            ],
+            "resultado": 1
+        },
+        "fio_de_cobre": {
+            "nome": "Fio de Cobre",
+            "ingredientes": [
+                {
+                    "nome": "placa_de_cobre",
+                    "qnt": 1    
+                }
+            ],
+            "resultado": 2
+        },
+        
+    }
+
+
+def calcular_recipes(recipe, qnt):
+
+    print(f'Para craftar {qnt} {recipe['nome']} voce vai precisar de: ')
+    for ingrediente in recipe['ingredientes']:
+        print(f"{ingrediente['nome']}: {ingrediente['qnt'] * (qnt / recipe['resultado'])}")
+        
+    print('-----------------------------------------------------------')
+
+
+
+teste = 'fio_de_cobre'
+calcular_recipes(recipes[teste], 10)
