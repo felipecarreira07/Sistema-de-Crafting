@@ -1,3 +1,5 @@
+import math
+
 recipes = {
         "placa_de_metal": {
             "nome": "Placa de Metal",
@@ -52,7 +54,7 @@ def calcular_recipes(recipe, qnt):
     print('-----------------------------------------------------------')
     print(f'Para craftar {qnt} {recipe['nome']} voce vai precisar de: ')
     for ingrediente in recipe['ingredientes']:
-        print(f"{ingrediente['nome']}: {ingrediente['qnt'] * (qnt / recipe['resultado'])}")
+        print(f"{ingrediente['nome']}: {math.ceil(ingrediente['qnt'] * (qnt / recipe['resultado']))}")
         
     print('-----------------------------------------------------------')
     return
