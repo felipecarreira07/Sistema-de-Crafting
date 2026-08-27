@@ -37,52 +37,86 @@ def escolha_calcular_recipe(lista_itens):
     return        
     
 opcoes_itens = ["placa_de_metal", "placa_de_cobre", "fio_de_cobre", "motor_eletrico"]
+
+inventario = {
+    #Minerios Brutos -----------
+    "minerio_de_ferro":{
+        "nome": "Minerio de Ferro",
+        "qnt": 0
+    },
+    "minerio_de_cobre":{
+        "nome": "Minerio de Cobre",
+        "qnt": 0
+    },
+    #Placas ----------------
+    "placa_de_metal": {
+        "nome": "Placa de Metal",
+        "qnt": 0
+    },
+    "placa_de_cobre": {
+        "nome": "Placa de Cobre",
+        "qnt": 0
+    },
+    #Cabos ------------------
+    "fio_de_cobre": {
+        "nome": "Fio de Cobre",
+        "qnt": 0
+    },
+    "motor_eletrico": {
+        "nome": "Motor Eletrico",
+        "qnt": 0
+    },
+}
+
 recipes = {
-        "placa_de_metal": {
-            "nome": "Placa de Metal",
-            "ingredientes": [
-                {
-                    "nome": "minerio_de_ferro",
-                    "qnt": 2    
-                }
-            ],
-            "resultado": 1
-        },
-        "placa_de_cobre": {
-            "nome": "Placa de Cobre",
-            "ingredientes": [
-                {
-                    "nome": "minerio_de_cobre",
-                    "qnt": 2    
-                }
-            ],
-            "resultado": 1
-        },
-        "fio_de_cobre": {
-            "nome": "Fio de Cobre",
-            "ingredientes": [
-                {
-                    "nome": "placa_de_cobre",
-                    "qnt": 1    
-                }
-            ],
-            "resultado": 2
-        },
-        "motor_eletrico": {
-            "nome": "Motor Eletrico",
-            "ingredientes": [
-                {
-                    "nome": "placa_de_ferro",
-                    "qnt": 4    
-                },
-                {
-                    "nome": "fio_de_cobre",
-                    "qnt": 4    
-                },
-            ],
-            "resultado": 3
-        },
-    }
+    #Placas -----------------
+    "placa_de_metal": {
+        "nome": "Placa de Metal",
+        "ingredientes": [
+            {
+                "nome": "minerio_de_ferro",
+                "qnt": 2    
+            }
+        ],
+        "resultado": 1
+    },
+    "placa_de_cobre": {
+        "nome": "Placa de Cobre",
+        "ingredientes": [
+            {
+                "nome": "minerio_de_cobre",
+                "qnt": 2    
+            }
+        ],
+        "resultado": 1
+    },
+    #Cabos -----------------
+    "fio_de_cobre": {
+        "nome": "Fio de Cobre",
+        "ingredientes": [
+            {
+                "nome": "placa_de_cobre",
+                "qnt": 1    
+            }
+        ],
+        "resultado": 2
+    },
+    #Itens Complexos -------
+    "motor_eletrico": {
+        "nome": "Motor Eletrico",
+        "ingredientes": [
+            {
+                "nome": "placa_de_ferro",
+                "qnt": 4    
+            },
+            {
+                "nome": "fio_de_cobre",
+                "qnt": 4    
+            },
+        ],
+        "resultado": 3
+    },
+}
 
 while True:
     #Interface -------------------
