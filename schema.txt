@@ -1,0 +1,65 @@
+Item do inventario: ---
+
+"minerio_de_ferro":{
+        "nome": "Minerio de Ferro",
+        "qnt": 0
+    },
+--------------------------
+
+Recipe: ---
+
+"circuito_basico": {
+        "nome": "Circuito Basico",
+        "ingredientes": [
+            {
+                "nome": "placa_de_ferro",
+                "qnt": 2    
+            },
+            {
+                "nome": "fio_de_cobre",
+                "qnt": 3    
+            },
+        ],
+        "resultado": 1
+    },
+
+calcular_recipes ja recebe ->   {
+                                    "nome": "Circuito Basico",
+                                    "ingredientes": [
+                                        {
+                                            "nome": "placa_de_ferro",
+                                            "qnt": 2    
+                                        },
+                                        {
+                                            "nome": "fio_de_cobre",
+                                            "qnt": 3    
+                                        },
+                                    ],
+                                    "resultado": 1
+                                }
+
+resultado esperado ->
+
+
+
+AINDA PRECISA CALCULAR O RENDIMENTO COM ARREDONDAMENTO
+
+Circuito basico = {[
+                        {
+                            "nome": "placa_de_ferro", (minerio_de_ferro: 2(por placa) * 2(qnt de placa))
+                            "qnt": 2    
+                        },
+                        {
+                            "nome": "fio_de_cobre" (minerio_de_cobre: 1(por 2 fios) * 2(qnt de fios)),
+                            "qnt": 3    
+                        },
+                        {
+                            "nome": "minerio_de_ferro",)
+                            "qnt": 4    
+                        },
+                        {
+                            "nome": "minerio_de_cobre"),
+                            "qnt": 2    
+                        },
+
+                    ]}

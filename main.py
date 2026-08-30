@@ -5,6 +5,7 @@ def calcular_recipes(recipe, qnt):
     print('-----------------------------------------------------------')
     print(f'Para craftar {qnt} {recipe['nome']} voce vai precisar de: ')
     for ingrediente in recipe['ingredientes']:
+        
         print(f"{ingrediente['nome']}: {math.ceil(ingrediente['qnt'] * (qnt / recipe['resultado']))}")
         
     print('-----------------------------------------------------------')
@@ -80,7 +81,6 @@ def verificar_disponibilidade_fabric(recipe, qnt):
         
     return
 
-opcoes_itens = ["placa_de_ferro", "placa_de_cobre", "fio_de_cobre", "motor_eletrico"]
 
 inventario = {
     #Minerios Brutos -----------
@@ -97,17 +97,14 @@ inventario = {
         "nome": "Placa de Ferro",
         "qnt": 1400
     },
-    "placa_de_cobre": {
-        "nome": "Placa de Cobre",
-        "qnt": 0
-    },
     #Cabos ------------------
     "fio_de_cobre": {
         "nome": "Fio de Cobre",
         "qnt": 14452
     },
-    "motor_eletrico": {
-        "nome": "Motor Eletrico",
+    #Itens importantes
+    "circuito_basico": {
+        "nome": "Circuito Basico",
         "qnt": 0
     },
 }
@@ -124,43 +121,36 @@ recipes = {
         ],
         "resultado": 1
     },
-    "placa_de_cobre": {
-        "nome": "Placa de Cobre",
-        "ingredientes": [
-            {
-                "nome": "minerio_de_cobre",
-                "qnt": 2    
-            }
-        ],
-        "resultado": 1
-    },
+    
     #Cabos -----------------
     "fio_de_cobre": {
         "nome": "Fio de Cobre",
         "ingredientes": [
             {
-                "nome": "placa_de_cobre",
+                "nome": "minerio_de_cobre",
                 "qnt": 1    
             }
         ],
         "resultado": 2
     },
     #Itens Complexos -------
-    "motor_eletrico": {
-        "nome": "Motor Eletrico",
+    "circuito_basico": {
+        "nome": "Circuito Basico",
         "ingredientes": [
             {
                 "nome": "placa_de_ferro",
-                "qnt": 4    
+                "qnt": 2    
             },
             {
                 "nome": "fio_de_cobre",
-                "qnt": 4    
+                "qnt": 3    
             },
         ],
-        "resultado": 3
+        "resultado": 1
     },
 }
+
+opcoes_itens = ["placa_de_ferro", "fio_de_cobre", "circuito_basico"]
 
 while True:
     #Interface -------------------
