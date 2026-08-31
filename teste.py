@@ -90,7 +90,6 @@ def calcular_recipe(_recipe, _qnt):
        
     return _result
     
-    
 #RECIPE['NOME DA RECIPE']
 def calcular_crafting_tree(_recipe_recebida):
     # _recipe_recebida => [{'nome': 'placa_de_ferro', 'qnt': 2}, {'nome': 'fio_de_cobre', 'qnt': 3}]
@@ -108,7 +107,7 @@ def calcular_crafting_tree(_recipe_recebida):
         else: 
             for i, _ingrediente_atual in enumerate(_array_percorrido):
                 if _ingrediente_atual['nome'] in RECIPES:
-                    _array_temporario.extend(RECIPES[_ingrediente_atual['nome']]['ingredientes'])
+                    _array_temporario.extend(calcular_recipe(RECIPES[_ingrediente_atual['nome']], _ingrediente_atual['qnt']))
                     _array_final.append(_array_temporario.pop(i))
                     pass
                 else:
@@ -117,24 +116,17 @@ def calcular_crafting_tree(_recipe_recebida):
             _array_percorrido = _array_temporario
             
     return _array_final
-  
 
-        
-        
-                
-        
 
-    # return => [{"nome": "placa_de_ferro","qnt": 2},{"nome": "fio_de_cobre","qnt": 3},{"nome": "minerio_de_ferro","qnt": 4},{"nome": "minerio_de_cobre","qnt": 2}]
-    
-# lista_teste = [{"nome": "placa_de_ferro","qnt": 2},
-#                {"nome": "fio_de_cobre","qnt": 3},
-#                {"nome": "placa_de_ferro","qnt": 2},
-#                {"nome": "minerio_de_ferro","qnt": 10},
-#                {"nome": "minerio_de_ferro","qnt": 3},
-#                ]
+
+
+# print(calcular_recipe(RECIPES['circuito_basico'], 1))
+# print(calcular_recipe(RECIPES['placa_de_ferro'], 2))
+# print(calcular_recipe(RECIPES['fio_de_cobre'], 3))
 
 resultado = calcular_crafting_tree(RECIPES['recipe_louca'])
 print(resultado)
+
 # recipe_calculada = calcular_recipe(recipes["circuito_basico"], 1)
 # recipe_crafting_tree = calcular_crafting_tree(recipe_calculada) # => [{'nome': 'placa_de_ferro', 'qnt': 2}, {'nome': 'fio_de_cobre', 'qnt': 3}]
 # #Tem que virar => [{"nome": "placa_de_ferro","qnt": 2},{"nome": "fio_de_cobre","qnt": 3},{"nome": "minerio_de_ferro","qnt": 4},{"nome": "minerio_de_cobre","qnt": 2}]
